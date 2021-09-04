@@ -4,16 +4,17 @@ const fortune = require('./lib/fortune')
 
 const app = express()
 
-app.engine("handlebars", expressHandlebars({
-    defaultLayout: "main",
-    section: function (name, options) {
-      if (!this.sections) this._sections = {};
-      (this._sections[name] = options), fn(this);
-      return null;
-    },
+app.engine("hbs", expressHandlebars({
+    layoutsDir: `${__dirname}/views/layouts`,
+    extname: 'hbs',
+    defaultLayout: "main", 
+    partialsDir: `${__dirname}/views/partials`
+    // Dynamic values are examples of fortune and weather
+    // Helper blocks help with conditionals and iterating over items
+    
   })
 );
-app.set('view engine', 'handlebars')
+app.set('view engine', 'hbs')
 
 const port = process.env.PORT || 3000
 app.use(express.static(__dirname + '/public'))

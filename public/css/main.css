@@ -132,27 +132,51 @@ Background img
 /*
  * Main column and sidebar layout
  */
+ .row{
+   display: flex;
+   flex-wrap: wrap;
+   gap: 10rem;
+ }
 
 .blog-main {
   font-size: 18px;
   line-height: 1.5;
+  flex-basis: 0;
+  flex-grow: 999;
+  min-width: 50%;
 }
 
+.blog-post {
+  margin-bottom: 60px;
+}
+.blog-post-title {
+  margin-bottom: 5px;
+  font-size: 40px;
+}
+.blog-post-meta {
+  margin-bottom: 20px;
+  color: #999;
+}
+
+
 /* Sidebar modules for boxing content */
+.sidebar-partial{
+  position: relative;
+  flex-basis: 20rem;
+  flex-grow: 1;
+}
 .sidebar-module {
   padding: 15px;
   margin: 0 -15px 15px;
 }
-.sidebar-module-inset {
+/* .sidebar-module-inset {
   padding: 15px;
   background-color: #f5f5f5;
   border-radius: 4px;
 }
-.sidebar-module-inset p:last-child,
-.sidebar-module-inset ul:last-child,
-.sidebar-module-inset ol:last-child {
-  margin-bottom: 0;
-}
+.sidebar-module-inset p:last-child {
+  margin-bottom: 0px;
+} */
 
 
 /* Pagination */
@@ -172,17 +196,6 @@ Background img
  * Blog posts
  */
 
-.blog-post {
-  margin-bottom: 60px;
-}
-.blog-post-title {
-  margin-bottom: 5px;
-  font-size: 40px;
-}
-.blog-post-meta {
-  margin-bottom: 20px;
-  color: #999;
-}
 
 
 /*
