@@ -1,30 +1,22 @@
 const express = require('express')
 const expressHandlebars = require('express-handlebars')
+const fortune = require('./lib/fortune')
 
 const app = express()
 
-app.engine('handlebars', expressHandlebars({
-    defaultLayout: 'main',
-
-}))
+app.engine("handlebars", expressHandlebars({
+    defaultLayout: "main",
+    section: function (name, options) {
+      if (!this.sections) this._sections = {};
+      (this._sections[name] = options), fn(this);
+      return null;
+    },
+  })
+);
 app.set('view engine', 'handlebars')
 
 const port = process.env.PORT || 3000
 app.use(express.static(__dirname + '/public'))
-
-
-const fortunes = [    
-    "Conquer your fears.",
-    "Rivers need springs",
-    "Do not fear the unknown",
-    "A pleasant surprise"
-  ]
-   
-
-app.get('/', (req, res) => {
-    res.type('text/plain')
-    res.send('Portals/Mirrors')
-})
 
 
 app.get('/', (req, res) => {
@@ -40,8 +32,7 @@ app.get('/poems', (req, res) => {
 })
 
 app.get('/about', (req, res) => {
-    const randomFortune = fortunes[Math.floor(Math.random()*fortunes.length)]
-    res.render('about', {fortune: randomFortune})
+    res.render('about', {fortune: fortune.getFortune()})
 })
 
 app.get('/contact', (req, res) => {
@@ -49,6 +40,8 @@ app.get('/contact', (req, res) => {
 })
 
 // middleware
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 app.use((req, res) => {
     res.type('text/plain')
     res.status(404)
