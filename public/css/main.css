@@ -24,6 +24,7 @@ h6, .h6 {
   .container {
     width: 970px;
   }
+   
 }
 
 
@@ -54,7 +55,7 @@ h6, .h6 {
   display: inline-block;
   padding: 10px;
   font-weight: 500;
-  color: #cdddeb;
+  color: #333;
   margin-right: 30px;
   font-size: large;
   
@@ -102,7 +103,7 @@ Background img
 #subtitle{
   position: absolute;
   width: 30em;
-  color: aqua;
+  color: blueviolet;
   font-size: xx-large;
   font-family: Arial, Helvetica, sans-serif;
   font-style: italic;
@@ -144,17 +145,19 @@ Background img
   flex-basis: 0;
   flex-grow: 999;
   min-width: 50%;
+  margin-left: 50px;
+  margin-top: 60px;
 }
 
 .blog-post {
-  margin-bottom: 60px;
+  margin-bottom: 0px;
 }
 .blog-post-title {
   margin-bottom: 5px;
   font-size: 40px;
 }
 .blog-post-meta {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   color: #999;
 }
 
@@ -164,6 +167,8 @@ Background img
   position: relative;
   flex-basis: 20rem;
   flex-grow: 1;
+  margin-right: 40px;
+  margin-top: 60px;
 }
 .sidebar-module {
   padding: 15px;
@@ -181,14 +186,24 @@ Background img
 
 /* Pagination */
 .pager {
-  margin-bottom: 60px;
-  text-align: left;
+  margin-bottom: 30px;
+  text-align: center;
+  display: flex;
+  list-style-type: none;
+  
+
 }
+
+
 .pager > li > a {
   width: 140px;
-  padding: 10px 20px;
-  text-align: center;
+  padding: 20px 10px;
+  text-align: left;
   border-radius: 30px;
+  text-decoration: none;
+  color: #333;
+  
+
 }
 
 
@@ -203,12 +218,62 @@ Background img
  */
 
 .blog-footer {
+  display: flex;
   padding: 40px 0;
   color: #999;
-  text-align: center;
+  align-items: center;
+  justify-content: center;
   background-color: #f9f9f9;
   border-top: 1px solid #e5e5e5;
+  
 }
-.blog-footer p:last-child {
-  margin-bottom: 0;
+
+.list-unstyled{
+  position: relative;
+  text-decoration: none;
+  list-style-type: none;
+  color: #428bca;
+  
+  /* bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  vertical-align: middle;
+  content: " ";
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid;
+  border-left: 5px solid transparent; */
+
+}
+
+
+
+.footer-social-links{
+  position: relative;
+  margin-right: 80px;
+}
+
+.scroll-up{
+  position:relative;
+  margin-right: auto;
+  margin-top: auto;
+  color: #333;
+  
+  
+}
+
+.copyright{
+  flex-wrap: wrap;
+  position: relative;
+  width: 30em;
+
+}
+
+
+/***********
+*** Essays **/
+#page-wrap{
+  width: 800px;
+  margin: 0 auto;
+  margin-top: 60px;
 }

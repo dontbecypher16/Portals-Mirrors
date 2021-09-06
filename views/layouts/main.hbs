@@ -16,12 +16,12 @@
             <div class="blog-masthead">
                 <div class="container">
                     <nav class="blog-nav">
-                        <a class="push" href="#"><h1>Portals/Mirrors</h1></a>
-                        <a class="blog-nav-item" href="#"><p class="nav-fonts">Home</p></a>
-                        <a class="blog-nav-item" href="#"><p class="nav-fonts">Essays</p></a>
-                        <a class="blog-nav-item" href="#"><p class="nav-fonts">Poems</p></a>
-                        <a class="blog-nav-item" href="#"><p class="nav-fonts">About</p></a>
-                        <a class="blog-nav-item" href="#"><p class="nav-fonts">Contact</p></a>
+                        <a class="push" href="/"><h1>Portals/Mirrors</h1></a>
+                        <a class="blog-nav-item" href="/"><p class="nav-fonts">Home</p></a>
+                        <a class="blog-nav-item" href="/essays"><p class="nav-fonts">Essays</p></a>
+                        <a class="blog-nav-item" href="/poems"><p class="nav-fonts">Poems</p></a>
+                        <a class="blog-nav-item" href="/about"><p class="nav-fonts">About</p></a>
+                        <a class="blog-nav-item" href="/contact"><p class="nav-fonts">Contact</p></a>
                     </nav>
                 </div>
             </div>
@@ -30,17 +30,17 @@
             {{{body}}}
         </div>
         <footer class="blog-footer">
-            &copy; 2021 Portals/Mirrors
-            {{> weather }}
-       <div class="footer-social-links">
-            <ol class="list-unstyled">
-              <li><a href="#">GitHub</a></li>
-              <li><a href="#">Twitter</a></li>
-            </ol>
-          </div>
-      <p>
-        <a href="#">Back to top</a>
-      </p>
+            {{!-- {{> weather }} --}}
+            <div class="footer-social-links">
+                 <p>
+                <a href="#" class="scroll-up">Back to top</a>
+            </p>
+              <ol class="list-unstyled">
+                    <li><a href="#"class="list-unstyled">Github</a></li>
+                    <li><a href="#" class="list-unstyled">Twitter</a></li>
+                </ol>
+            </div>
+            <div class="copyright">&copy; 2021 Portals/Mirrors</div>
         </footer>
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
            <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
