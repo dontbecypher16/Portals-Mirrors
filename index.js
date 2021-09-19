@@ -11,6 +11,8 @@ app.engine("hbs", expressHandlebars({
     partialsDir: `${__dirname}/views/partials`
     // Dynamic values are examples of fortune and weather
     // Helper blocks help with conditionals and iterating over items
+    // Look into hbs docs if need to register partials with following: hbs.registerPartials(partialsDir)
+    
     
   })
 );
@@ -46,7 +48,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use((req, res) => {
     res.type('text/plain')
     res.status(404)
-    res.send('404 - Not Found')
+    res.send('404 - Page Not Found')
 })
 
 
