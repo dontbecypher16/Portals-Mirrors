@@ -24,7 +24,12 @@ const userSchema = new mongoose.Schema({
         enum: ["guest", "admin"],
         default: "admin"
 
-    }
+    },
+    posts: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Post'
+    }] 
+    
 })
 
 const User = mongoose.model('User', userSchema)

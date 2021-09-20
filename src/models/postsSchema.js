@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const eventSchema = new mongoose.Schema({
+const postSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -15,6 +15,6 @@ const eventSchema = new mongoose.Schema({
     }
 })
 
-const Event = mongoose.model('Event', eventSchema)
-module.exports = Event
+const Post = mongoose.model('Post', postSchema)
+module.exports = Post
 
