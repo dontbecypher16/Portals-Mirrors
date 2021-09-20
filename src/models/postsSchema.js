@@ -1,13 +1,15 @@
 const mongoose = require('mongoose')
 
 const postSchema = new mongoose.Schema({
+    _author: {
+        type: Number,
+        ref: 'User'
+    },
     title: {
-        type: String,
-        required: true
+        type: String
     },
     body: {
-        type: String,
-        required: true
+        type: String
     },
     category: {
         type: String,
