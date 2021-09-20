@@ -1,8 +1,13 @@
 const express = require('express')
+const app = express()
 const expressHandlebars = require('express-handlebars')
+
+// fortune file is just example I am using for reference, same for the weather file in lib 
 const fortune = require('./lib/fortune')
 
-const app = express()
+const dbSetup = require('./db')
+const port = process.env.PORT || 3000
+app.use(express.static(__dirname + '/public'))
 
 app.engine("hbs", expressHandlebars({
     layoutsDir: `${__dirname}/views/layouts`,
@@ -18,8 +23,7 @@ app.engine("hbs", expressHandlebars({
 );
 app.set('view engine', 'hbs')
 
-const port = process.env.PORT || 3000
-app.use(express.static(__dirname + '/public'))
+
 
 
 app.get('/', (req, res) => {
@@ -42,9 +46,18 @@ app.get('/contact', (req, res) => {
     res.render('contact')
 })
 
+app.get('/admin', (req, res) => {
+    res.render('admin')
+})
+
+
+dbSetup()
+
 // middleware
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+
 app.use((req, res) => {
     res.type('text/plain')
     res.status(404)
@@ -61,6 +74,6 @@ app.use((err, req, res, next) => {
 
 
 app.listen(port, () => console.log(
-    `Express started on http://localhost:${port} ` +
+    `Server started on http://localhost:${port} ` +
     `press Ctrl-C to terminate.`
 ))
