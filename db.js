@@ -8,7 +8,7 @@ module.exports = function() {
  {useNewUrlParser: true,
  useUnifiedTopology: true }, (err) => {
     if(err)  {
-        console.log(err)
+        console.log('Something went wrong', err)
     } else {
         console.log('database connection successful')
 

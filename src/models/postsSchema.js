@@ -8,12 +8,15 @@ const postSchema = new mongoose.Schema({
     title: {
         type: String
     },
-    body: {
+    description: {
         type: String
     },
     category: {
         type: String,
         enum: ['essay', 'poem']
+    },
+    body: {
+        type: String
     }
 })
 

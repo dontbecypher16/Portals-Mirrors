@@ -50,6 +50,10 @@ app.get('/admin', (req, res) => {
     res.render('admin')
 })
 
+app.get('/post/new', (req, res) => {
+    res.render('post')
+})
+
 
 dbSetup()
 
