@@ -1,13 +1,14 @@
 const express = require('express')
 const app = express()
-const expressHandlebars = require('express-handlebars')
-
-// fortune file is just example I am using for reference, same for the weather file in lib 
-const fortune = require('./lib/fortune')
+const expressHandlebars = require('express-handlebars');
+const Post = require('./src/models/postsSchema')
 
 const dbSetup = require('./db')
 const port = process.env.PORT || 3000
 app.use(express.static(__dirname + '/public'))
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 app.engine("hbs", expressHandlebars({
     layoutsDir: `${__dirname}/views/layouts`,
@@ -26,8 +27,12 @@ app.set('view engine', 'hbs')
 
 
 
-app.get('/', (req, res) => {
-   res.render('home')
+app.get('/', async (req, res) => {
+    const posts = await Post.find({}).lean()
+    console.log(posts)
+    res.render('home', {
+        posts
+    })
 })
 
 app.get('/essays', (req, res) => {
@@ -39,7 +44,7 @@ app.get('/poems', (req, res) => {
 })
 
 app.get('/about', (req, res) => {
-    res.render('about', {fortune: fortune.getFortune()})
+    res.render('about')
 })
 
 app.get('/contact', (req, res) => {
@@ -50,17 +55,28 @@ app.get('/admin', (req, res) => {
     res.render('admin')
 })
 
-app.get('/post/new', (req, res) => {
-    res.render('post')
+app.get('/posts', (req, res) => {
+    res.render('posts')
+});
+
+app.get('/singlepost/:id', async (req, res) => {
+    const posts = await Post.findById(req.params.id).lean()
+    res.render('singlepost', {
+        posts
+    })
+})
+/////////////////////////////
+
+app.post('/posts', (req, res) => {
+    Post.create(req.body, (error, posts) => {
+        res.redirect('/')
+    })
 })
 
 
 dbSetup()
 
 // middleware
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-
 
 app.use((req, res) => {
     res.type('text/plain')

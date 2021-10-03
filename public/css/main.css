@@ -162,28 +162,6 @@ Background img
 }
 
 
-/* Sidebar modules for boxing content */
-.sidebar-partial{
-  position: relative;
-  flex-basis: 20rem;
-  flex-grow: 1;
-  margin-right: 40px;
-  margin-top: 60px;
-}
-.sidebar-module {
-  padding: 15px;
-  margin: 0 -15px 15px;
-}
-/* .sidebar-module-inset {
-  padding: 15px;
-  background-color: #f5f5f5;
-  border-radius: 4px;
-}
-.sidebar-module-inset p:last-child {
-  margin-bottom: 0px;
-} */
-
-
 /* Pagination */
 .pager {
   margin-bottom: 30px;
@@ -229,6 +207,7 @@ Background img
 }
 
 .list-unstyled{
+  display: inline;
   position: relative;
   text-decoration: none;
   list-style-type: none;
@@ -236,9 +215,9 @@ Background img
   
   /* bottom: 0;
   left: 50%;
+  vertical-align: middle;
   width: 0;
   height: 0;
-  vertical-align: middle;
   content: " ";
   border-right: 5px solid transparent;
   border-bottom: 5px solid;
@@ -246,6 +225,11 @@ Background img
 
 }
 
+.list-inline-item{
+  display: inline;
+  /*position: relative;
+  margin-right: 80px;*/
+}
 
 
 .footer-social-links{

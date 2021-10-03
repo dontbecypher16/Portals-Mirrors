@@ -1,0 +1,28 @@
+<body>
+    <div id="page-wrap">
+        <div class="blog-post">
+            {{#with posts}}
+            <h2 class="blog-post-title">{{ this.title }}</h2>
+            <p class="blog-post-meta">January 1, 2021 by <a href="#">Vick</a></p>
+
+            <article>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-10 mx-auto">
+                            {{ this.body }}
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <hr>
+            {{/with}}
+        </div><!-- /.blog-post -->
+        <nav>
+            <ul class="pager">
+                <li><a href="#">Previous</a></li>
+                <li><a href="#">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+</body>
