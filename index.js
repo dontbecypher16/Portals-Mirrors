@@ -1,14 +1,24 @@
 const express = require("express");
 const app = express();
 const expressHandlebars = require("express-handlebars");
+//const fileUpoad = require('express-fileupload')// optional, still thinking on it
+const moment =require("moment")// parse dates and time
 const Post = require("./src/models/postsSchema");
+
+const createPostController = require('./src/controllers/createPost')
+const homePageController = require('./src/controllers/homePage')
+const storePostController = require('./src/controllers/storePosts')
+const getPostController = require('./src/controllers/getPost')
+const createUserController = require('./src/controllers/createUser')
+const storeUserController = require('./src/controllers/storeUser');
 
 const dbSetup = require("./db");
 const port = process.env.PORT || 3000;
 app.use(express.static(__dirname + "/public"));
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+
 
 app.engine(
   "hbs",
@@ -17,26 +27,29 @@ app.engine(
     extname: "hbs",
     defaultLayout: "main",
     partialsDir: `${__dirname}/views/partials`,
+    helpers: {
+      section: function(name, options) {
+        if (!this._sections) this._sections = {}
+        this._sections[name] = options.fn(this)
+        return null
+       }
+    }
     // Dynamic values are examples of fortune and weather
     // Helper blocks help with conditionals and iterating over items
     // Look into hbs docs if need to register partials with following: hbs.registerPartials(partialsDir)
   })
+
 );
 app.set("view engine", "hbs");
 
-app.get("/", async (req, res) => {
-  const posts = await Post.find({}).lean();
-  console.log(posts);
-  res.render("home", {
-    posts,
-  });
-});
 
-app.post("/posts", (req, res) => {
-  Post.create(req.body, (error, posts) => {
-    res.redirect("/");
-  });
-});
+app.get("/", homePageController);
+app.get("/posts/:id", getPostController);
+app.get("/posts", createPostController);
+app.post("/posts", storePostController);
+app.get("/auth/register", createUserController);
+app.post("/users", storeUserController);
+
 
 app.get("/essays", (req, res) => {
   res.render("essays");
@@ -58,16 +71,7 @@ app.get("/admin", (req, res) => {
   res.render("admin");
 });
 
-app.get("/posts/new", (req, res) => {
-  res.render("create");
-});
 
-app.get("/posts/:id", async (req, res) => {
-  const posts = await Post.findById(req.params.id).lean();
-  res.render("singlepost", {
-    posts,
-  });
-});
 
 
 dbSetup();

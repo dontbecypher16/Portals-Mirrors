@@ -17,13 +17,11 @@
                                 <li>{{ this.title }}</li>
                             </a>
                         </h2>
-                        <a href="posts/{{ this._id }}">
-                            <p class="post-meta">Posted by {{ this.username }}
-                                on {{ this.createdAt }}
-                            </p>
-                        </a>
+                        <p class="post-meta">Posted by <a href="#"> {{ this.username }} </a>
+                            on {{ this.createdAt }}
+                        </p>
                     </ul>
-                        {{/each}}
+                    {{/each}}
                 </div>
                 <hr>
 

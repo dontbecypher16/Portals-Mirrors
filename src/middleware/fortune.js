@@ -10,3 +10,6 @@ const fortuneCookies = [
     const idx = Math.floor(Math.random()*fortuneCookies.length)
     return fortuneCookies[idx]
   }
+  
+
+  // Just here for reference on how to navigate certain functionality of hbs
