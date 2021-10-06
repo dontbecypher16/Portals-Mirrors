@@ -24,24 +24,24 @@ const userSchema = new mongoose.Schema({
         enum: ["guest", "admin"],
         default: "admin"
 
-    },
-    posts: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Post'
-    }] 
+    }
+   
     
 })
 
 
-userSchema.pre('save', function (next) {
-    const user = this
-
-    bcrypt.hash(user.password, 10, function (error, encrypted) {
-        user.password = encrypted
-    })
-
-    next()
-})
 
 const User = mongoose.model('User', userSchema)
+
+
+// userSchema.pre('save', function (next) {
+//     const user = this
+
+//     bcrypt.hash(user.password, 10, function (error, encrypted) {
+//         user.password = encrypted
+//     })
+
+//     next()
+// })
+
 module.exports = User

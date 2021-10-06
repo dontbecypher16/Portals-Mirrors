@@ -15,7 +15,7 @@ const postSchema = new mongoose.Schema({
         type: String,
         enum: ['essay', 'poem']
     },
-    body: {
+    content: {
         type: String
     },
     username: {

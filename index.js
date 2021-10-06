@@ -4,6 +4,7 @@ const expressHandlebars = require("express-handlebars");
 //const fileUpoad = require('express-fileupload')// optional, still thinking on it
 const moment =require("moment")// parse dates and time
 const Post = require("./src/models/postsSchema");
+const User = require("./src/models/userSchema");
 
 const createPostController = require('./src/controllers/createPost')
 const homePageController = require('./src/controllers/homePage')
