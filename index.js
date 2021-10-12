@@ -1,8 +1,13 @@
 const express = require("express")
 const app = express()
 const expressHandlebars = require("express-handlebars")
-//const fileUpoad = require('express-fileupload')// optional, still thinking on it
+const expressSession = require('express-session')
+const MongoStore = require('connect-mongo')
+const auth = require('./src/middleware/auth')
+const flash = require('connect-flash')
 const moment =require("moment")// parse dates and time
+
+//const fileUpoad = require('express-fileupload')// optional, still thinking on it
 
 const createPostController = require('./src/controllers/createPost')
 const homePageController = require('./src/controllers/homePage')
@@ -13,11 +18,22 @@ const storeUserController = require('./src/controllers/storeUser')
 const loginController = require("./src/controllers/login")
 const loginUserController = require('./src/controllers/loginUser')
 
-const dbSetup = require("./db");
+const dbSetup = require("./db")
 const port = process.env.PORT || 3000;
+
 app.use(express.static(__dirname + "/public"))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
+app.use(expressSession({
+  secret: 'secret',
+  store: MongoStore.create({ 
+    mongoUrl: 'mongodb://localhost:27017/portals-mirrors' }),
+    resave: true,
+    saveUninitialized: true
+
+  }))
+  app.use(flash())
+
 
 
 
@@ -46,7 +62,7 @@ app.set("view engine", "hbs");
 
 app.get("/", homePageController)
 app.get("/posts/:id", getPostController)
-app.get("/posts", createPostController)
+app.get("/posts", auth, createPostController)
 app.post("/posts/store", storePostController)
 app.get('/auth/login', loginController)
 app.post('/users/login', loginUserController)

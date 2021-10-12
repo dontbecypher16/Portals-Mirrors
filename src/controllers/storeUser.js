@@ -12,10 +12,11 @@ module.exports = async (req, res) => {
     }, (error, user) => {
         if (error) {
             console.log(error)
-            res.status(500)
-             res.redirect('/auth/register')
+            const registrationErrors = Object.keys(error.errors).map(key => error.errors[key].message)
+            res.redirect('/auth/register')
+            req.flash('registrationErrors', registrationErrors)
         }else{
-            const savedUser = user.save()
+
             res.redirect("/")
 
         }

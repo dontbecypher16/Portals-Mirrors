@@ -9,6 +9,12 @@
   </div>
 
 
+   <ul class="list-group">
+     {{#if error}}
+       <li class="list-group-item text-danger">{{ error }}</li>
+       {{/if}}
+   </ul>
+
 <div class="container">
   <div class="row">
     <div class="col-md-8 offset-md-2">

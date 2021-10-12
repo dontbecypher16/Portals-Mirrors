@@ -15,6 +15,7 @@ module.exports = (req, res) => {
             bcrypt.compare(password, user.password, (error, same) => {
                 if (same) {
                     // store user session.
+                    req.session.userId = user._id
                     res.redirect('/')
                     console.log({ Message: "Success"})
                 } else {
@@ -28,3 +29,10 @@ module.exports = (req, res) => {
 }
 
 
+// @if(errors.length > 0)
+//   <ul class="list-group">
+//     @each(error in errors)
+//       <li class="list-group-item text-danger">{{ error }}</li>
+//     @endeach
+//   </ul>
+// @endif
