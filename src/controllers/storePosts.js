@@ -4,7 +4,12 @@ const Post = require("../models/postsSchema");
 
 
 module.exports = (req, res) => {
-    Post.create(req.body, (error, posts) => {
+     Post.create(req.body, (error, posts) => {
+      if (error) {
+        console.log(error)
+        res.status(500)
+         res.redirect('/posts/new')
+    }
       res.redirect("/");
-    });
+    })
   }

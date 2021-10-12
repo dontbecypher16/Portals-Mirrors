@@ -1,23 +1,23 @@
-const express = require("express");
-const app = express();
-const expressHandlebars = require("express-handlebars");
+const express = require("express")
+const app = express()
+const expressHandlebars = require("express-handlebars")
 //const fileUpoad = require('express-fileupload')// optional, still thinking on it
 const moment =require("moment")// parse dates and time
-const Post = require("./src/models/postsSchema");
-const User = require("./src/models/userSchema");
 
 const createPostController = require('./src/controllers/createPost')
 const homePageController = require('./src/controllers/homePage')
 const storePostController = require('./src/controllers/storePosts')
 const getPostController = require('./src/controllers/getPost')
 const createUserController = require('./src/controllers/createUser')
-const storeUserController = require('./src/controllers/storeUser');
+const storeUserController = require('./src/controllers/storeUser')
+const loginController = require("./src/controllers/login")
+const loginUserController = require('./src/controllers/loginUser')
 
 const dbSetup = require("./db");
 const port = process.env.PORT || 3000;
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/public"))
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }))
 
 
 
@@ -44,12 +44,15 @@ app.engine(
 app.set("view engine", "hbs");
 
 
-app.get("/", homePageController);
-app.get("/posts/:id", getPostController);
-app.get("/posts", createPostController);
-app.post("/posts", storePostController);
-app.get("/auth/register", createUserController);
-app.post("/users", storeUserController);
+app.get("/", homePageController)
+app.get("/posts/:id", getPostController)
+app.get("/posts", createPostController)
+app.post("/posts/store", storePostController)
+app.get('/auth/login', loginController)
+app.post('/users/login', loginUserController)
+app.get("/auth/register", createUserController)
+app.post("/users/register", storeUserController)
+
 
 
 app.get("/essays", (req, res) => {
@@ -80,20 +83,20 @@ dbSetup();
 // middleware
 
 app.use((req, res) => {
-  res.type("text/plain");
-  res.status(404);
-  res.send("404 - Page Not Found");
-});
+  res.type("text/plain")
+  res.status(404)
+  res.send("404 - Page Not Found")
+})
 
 app.use((err, req, res, next) => {
-  console.error(err.message);
-  res.type("text/plain");
-  res.status(500);
-  res.send("500 - Server Error");
-});
+  console.error(err.message)
+  res.type("text/plain")
+  res.status(500)
+  res.send("500 - Server Error")
+})
 
 app.listen(port, () =>
   console.log(
     `Server started on http://localhost:${port} ` + `press Ctrl-C to terminate.`
   )
-);
+)

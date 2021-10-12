@@ -1,10 +1,7 @@
 const mongoose = require('mongoose')
 
 const postSchema = new mongoose.Schema({
-    _author: {
-        type: Number,
-        ref: 'User'
-    },
+  
     title: {
         type: String
     },

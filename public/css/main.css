@@ -58,6 +58,7 @@ h6, .h6 {
   color: #333;
   margin-right: 30px;
   font-size: large;
+  text-decoration: none;
   
 }
 .blog-nav-item:hover,
@@ -69,6 +70,7 @@ h6, .h6 {
 
 .blog-nav{
   display: flex;
+  text-decoration: none;
 }
 
 /* Active state gets a caret at the bottom */
