@@ -10,8 +10,7 @@ I am using Node.js and will send resources to the client with a templating engin
 Thinking about creating where visitors can login and make comments on any of the individual posts.
 
 * Home page
-* Essay page
-* Poem page
 * About page
 * Contact page
-* Admin page
+* Login page
+* Create Post
