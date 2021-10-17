@@ -1,13 +1,13 @@
 const bcrypt = require('bcrypt')
 const User = require('../models/userSchema')
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
     const {
         email,
         password
     } = req.body;
     // try to find the user
-    User.findOne({
+    await User.findOne({
         email
     }, (error, user) => {
         if (user) {
@@ -29,10 +29,3 @@ module.exports = (req, res) => {
 }
 
 
-// @if(errors.length > 0)
-//   <ul class="list-group">
-//     @each(error in errors)
-//       <li class="list-group-item text-danger">{{ error }}</li>
-//     @endeach
-//   </ul>
-// @endif

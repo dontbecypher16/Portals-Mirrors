@@ -1,5 +1,6 @@
 const User = require('../models/userSchema')
 const bcrypt = require('bcrypt')
+const flash = require('connect-flash')
 
 module.exports = async (req, res) => {
 
@@ -11,10 +12,10 @@ module.exports = async (req, res) => {
         password: hashedPassword
     }, (error, user) => {
         if (error) {
-            console.log(error)
             const registrationErrors = Object.keys(error.errors).map(key => error.errors[key].message)
-            res.redirect('/auth/register')
+    
             req.flash('registrationErrors', registrationErrors)
+            res.redirect('/auth/register')
         }else{
 
             res.redirect("/")
@@ -23,6 +24,8 @@ module.exports = async (req, res) => {
         
     })
 }
+
+
 
 
 // bcrypt.hash(user.password, 10, function (error, encrypted) {

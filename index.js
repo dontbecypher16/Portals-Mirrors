@@ -5,7 +5,7 @@ const expressSession = require('express-session')
 const MongoStore = require('connect-mongo')
 const auth = require('./src/middleware/auth')
 const flash = require('connect-flash')
-const moment =require("moment")// parse dates and time
+const moment = require("moment")// parse dates and time
 
 //const fileUpoad = require('express-fileupload')// optional, still thinking on it
 
@@ -32,37 +32,47 @@ app.use(expressSession({
     saveUninitialized: true
 
   }))
-  app.use(flash())
+  
+  
+  
+  
+  app.engine(
+    "hbs",
+    expressHandlebars({
+      layoutsDir: `${__dirname}/views/layouts`,
+      extname: "hbs",
+      defaultLayout: "main",
+      partialsDir: `${__dirname}/views/partials`,
+      helpers: {
+        section: function(name, options) {
+          if (!this._sections) this._sections = {}
+          this._sections[name] = options.fn(this)
+          return null
+        }
+      }
+      // Dynamic values are examples of fortune and weather
+      // Helper blocks help with conditionals and iterating over items
+      // Look into hbs docs if need to register partials with following: hbs.registerPartials(partialsDir)
+    })
+    
+    );
+    app.set("view engine", "hbs");
 
+    app.use(flash())
+    app.use((req, res, next) => {
+      res.locals.registrationErrors = req.flash('registrationErrors')
+      next()
+      
+    })
 
-
-
-app.engine(
-  "hbs",
-  expressHandlebars({
-    layoutsDir: `${__dirname}/views/layouts`,
-    extname: "hbs",
-    defaultLayout: "main",
-    partialsDir: `${__dirname}/views/partials`,
-    helpers: {
-      section: function(name, options) {
-        if (!this._sections) this._sections = {}
-        this._sections[name] = options.fn(this)
-        return null
-       }
-    }
-    // Dynamic values are examples of fortune and weather
-    // Helper blocks help with conditionals and iterating over items
-    // Look into hbs docs if need to register partials with following: hbs.registerPartials(partialsDir)
-  })
-
-);
-app.set("view engine", "hbs");
-
-
+// const storePost = require('./src/middleware/storePost')
+// app.use('/posts/store', storePost)
+    
+    
+    
 app.get("/", homePageController)
 app.get("/posts/:id", getPostController)
-app.get("/posts", auth, createPostController)
+app.get("/posts",  createPostController)
 app.post("/posts/store", storePostController)
 app.get('/auth/login', loginController)
 app.post('/users/login', loginUserController)
@@ -70,14 +80,6 @@ app.get("/auth/register", createUserController)
 app.post("/users/register", storeUserController)
 
 
-
-app.get("/essays", (req, res) => {
-  res.render("essays");
-});
-
-app.get("/poems", (req, res) => {
-  res.render("poems");
-});
 
 app.get("/about", (req, res) => {
   res.render("about");

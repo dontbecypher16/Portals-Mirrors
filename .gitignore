@@ -1,4 +1,6 @@
 node_modules
 .env
 
-playground
+placeholder.js
+views\partials\weather.hbs
+src\middleware\fortune.js

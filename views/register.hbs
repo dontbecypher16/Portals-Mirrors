@@ -10,9 +10,9 @@
 
 
    <ul class="list-group">
-     {{#if error}}
-       <li class="list-group-item text-danger">{{ error }}</li>
-       {{/if}}
+     {{#each registrationErrors }}
+       <li class="list-group-item text-danger">{{ this }}</li>
+       {{/each}}
    </ul>
 
 <div class="container">

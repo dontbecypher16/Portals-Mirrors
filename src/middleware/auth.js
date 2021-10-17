@@ -1,11 +1,11 @@
 const User = require('../models/userSchema')
 
-module.exports = (req, res, next) => {
+module.exports = (req, res) => {
     User.findById(req.session.userId, (error, user) => {
         if (error || !user) {
-            return res.redirect('/')
+             res.redirect('/')
         }
 
-        next()
+        
     })
 }
