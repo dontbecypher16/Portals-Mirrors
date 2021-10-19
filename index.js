@@ -3,8 +3,11 @@ const app = express()
 const expressHandlebars = require("express-handlebars")
 const expressSession = require('express-session')
 const MongoStore = require('connect-mongo')
-const auth = require('./src/middleware/auth')
 const flash = require('connect-flash')
+const passport = require('passport'),
+ LocalStrategy = require('passport-local').Strategy
+const auth = require('./src/middleware/auth')
+const redirectIfAuthenticated = require('./src/middleware/redirectIfAuthenticated')
 const moment = require("moment")// parse dates and time
 
 //const fileUpoad = require('express-fileupload')// optional, still thinking on it
@@ -32,6 +35,8 @@ app.use(expressSession({
     saveUninitialized: true
 
   }))
+app.use(passport.initialize())
+app.use(passport.session())
   
   
   
@@ -65,19 +70,19 @@ app.use(expressSession({
       
     })
 
-// const storePost = require('./src/middleware/storePost')
-// app.use('/posts/store', storePost)
+const morePost = require('./src/middleware/morePost')
+app.use('/posts/store', morePost)
     
     
     
 app.get("/", homePageController)
 app.get("/posts/:id", getPostController)
-app.get("/posts",  createPostController)
-app.post("/posts/store", storePostController)
-app.get('/auth/login', loginController)
-app.post('/users/login', loginUserController)
-app.get("/auth/register", createUserController)
-app.post("/users/register", storeUserController)
+app.get("/posts", auth,  createPostController)
+app.post("/posts/store",auth, morePost, storePostController)
+app.get('/auth/login', redirectIfAuthenticated, loginController)
+app.post('/users/login', redirectIfAuthenticated, loginUserController)
+app.get("/auth/register", redirectIfAuthenticated, createUserController)
+app.post("/users/register", redirectIfAuthenticated, storeUserController)
 
 
 
