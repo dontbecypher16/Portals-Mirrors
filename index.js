@@ -4,8 +4,6 @@ const expressHandlebars = require("express-handlebars")
 const expressSession = require('express-session')
 const MongoStore = require('connect-mongo')
 const flash = require('connect-flash')
-const passport = require('passport'),
- LocalStrategy = require('passport-local').Strategy
 const auth = require('./src/middleware/auth')
 const redirectIfAuthenticated = require('./src/middleware/redirectIfAuthenticated')
 const moment = require("moment")// parse dates and time
@@ -20,6 +18,8 @@ const createUserController = require('./src/controllers/createUser')
 const storeUserController = require('./src/controllers/storeUser')
 const loginController = require("./src/controllers/login")
 const loginUserController = require('./src/controllers/loginUser')
+const logoutController = require('./src/controllers/logout')
+const updatePostController = require('./src/controllers/updatePost')
 
 const dbSetup = require("./db")
 const port = process.env.PORT || 3000;
@@ -35,8 +35,7 @@ app.use(expressSession({
     saveUninitialized: true
 
   }))
-app.use(passport.initialize())
-app.use(passport.session())
+
   
   
   
@@ -77,12 +76,14 @@ app.use('/posts/store', morePost)
     
 app.get("/", homePageController)
 app.get("/posts/:id", getPostController)
-app.get("/posts", auth,  createPostController)
-app.post("/posts/store",auth, morePost, storePostController)
-app.get('/auth/login', redirectIfAuthenticated, loginController)
-app.post('/users/login', redirectIfAuthenticated, loginUserController)
-app.get("/auth/register", redirectIfAuthenticated, createUserController)
-app.post("/users/register", redirectIfAuthenticated, storeUserController)
+app.get("/posts",  createPostController)
+app.post("/posts/store", storePostController)
+app.get('/auth/login', loginController)
+app.post('/users/login', loginUserController)
+app.get("/auth/register",  createUserController)
+app.post("/users/register",  storeUserController)
+app.get("/auth/logout", logoutController)
+app.get("/posts/:id", updatePostController)
 
 
 

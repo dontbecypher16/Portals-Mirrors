@@ -1,71 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#fafafa">
-    <script src="https://kit.fontawesome.com/e51739c839.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/css/normalize.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <title>Portals/Mirrors</title>
-     <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fafafa">
+  <script src="https://kit.fontawesome.com/e51739c839.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <title>Portals/Mirrors</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
-    <div class="container">
-        <header>
-            <div class="blog-masthead">
-                <div class="container">
-                    <nav class="blog-nav">
-                        <a class="push" href="/"><h1>Portals/Mirrors</h1></a>
-                        <a class="blog-nav-item" href="/"><p class="nav-fonts">Home</p></a>
-                        <a class="blog-nav-item" href="/about"><p class="nav-fonts">About</p></a>
-                        <a class="blog-nav-item" href="/contact"><p class="nav-fonts">Contact</p></a>
-                        <a class="blog-nav-item" href="/auth/login"><p class="nav-fonts">Login</p></a>
-                        <a class="blog-nav-item" href="/posts"><p class="nav-fonts">Create Post</p></a>
-                    </nav>
-                </div>
-            </div>
-        </header>
+  <div class="container">
+    <header>
+      <div class="blog-masthead">
         <div class="container">
-            {{{body}}}
-        </div>
-        <footer class="blog-footer">
-         <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <ul class="list-unstyled">
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-          </ul>
-          <p class="copyright text-muted">Copyright © Portals/Mirrors 2021</p>
+          <nav class="blog-nav">
+            <a class="push" href="/">
+              <h1>Portals/Mirrors</h1>
+            </a>
+            <a class="blog-nav-item" href="/">
+              <p class="nav-fonts">Home</p>
+            </a>
+            <a class="blog-nav-item" href="/about">
+              <p class="nav-fonts">About</p>
+            </a>
+            <a class="blog-nav-item" href="/contact">
+              <p class="nav-fonts">Contact</p>
+            </a>
+            <a class="blog-nav-item" href="/posts">
+              <p class="nav-fonts">Create Post</p>
+            </a>
+            {{#if sessionSwitch.UserId}}
+            <a class="blog-nav-item" href="/auth/logout">
+              <p class="nav-fonts">Logout</p>
+            </a>
+            {{else}}
+            <a class="blog-nav-item" href="/auth/login">
+              <p class="nav-fonts">Login</p>
+            </a>
+            {{/if}}
+          </nav>
         </div>
       </div>
+    </header>
+    <div class="container">
+      {{{body}}}
     </div>
-        </footer> 
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-           <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-            <script src="../../dist/js/bootstrap.min.js"></script>
-            <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-    </div>
+    <footer class="blog-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <ul class="list-unstyled">
+              <li class="list-inline-item">
+                <a href="#">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+            </ul>
+            <p class="copyright text-muted">Copyright © Portals/Mirrors 2021</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </div>
 </body>
+
 </html>
-
-
 
 
 
