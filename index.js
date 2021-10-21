@@ -4,6 +4,8 @@ const expressHandlebars = require("express-handlebars")
 const expressSession = require('express-session')
 const MongoStore = require('connect-mongo')
 const flash = require('connect-flash')
+const methodOverride = require('method-override')
+
 const auth = require('./src/middleware/auth')
 const redirectIfAuthenticated = require('./src/middleware/redirectIfAuthenticated')
 const moment = require("moment")// parse dates and time
@@ -19,7 +21,7 @@ const storeUserController = require('./src/controllers/storeUser')
 const loginController = require("./src/controllers/login")
 const loginUserController = require('./src/controllers/loginUser')
 const logoutController = require('./src/controllers/logout')
-const updatePostController = require('./src/controllers/updatePost')
+const deletePostController = require('./src/controllers/deletePost')
 
 const dbSetup = require("./db")
 const port = process.env.PORT || 3000;
@@ -27,6 +29,7 @@ const port = process.env.PORT || 3000;
 app.use(express.static(__dirname + "/public"))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
+app.use(methodOverride('_method'))
 app.use(expressSession({
   secret: 'secret',
   store: MongoStore.create({ 
@@ -83,7 +86,7 @@ app.post('/users/login', loginUserController)
 app.get("/auth/register",  createUserController)
 app.post("/users/register",  storeUserController)
 app.get("/auth/logout", logoutController)
-app.get("/posts/:id", updatePostController)
+app.delete("/posts/:id", deletePostController)
 
 
 

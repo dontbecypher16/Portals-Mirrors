@@ -13,12 +13,9 @@
                         <p class="post-meta">Posted by <a href="#"> {{ this.username }} </a>
                             on {{ this.createdAt }}
                         </p>
-                        <form action="/posts/:{{this._id}}" method="GET">
-                            <input type="hidden" name="title" value="{{this.title}}">
+                        <form action="/posts/{{this._id}}?_method=DELETE" method="POST">
+                               <button type="submit" class="btn btn-danger float-right">Delete Post</button>
                         </form>
-                            <div class="form-group my-4 text-center">
-                               <a  href="/posts/:id"><button class="btn btn-primary float-right">Edit Post</button></a>
-                            </div>
                     </ul>
                     {{/each}}
                 </div>
