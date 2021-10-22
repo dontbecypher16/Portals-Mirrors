@@ -9,6 +9,7 @@ module.exports = (req, res) => {
       res.status(500);
       res.redirect("/posts");
     } 
-    res.redirect("/");
+      
+      res.redirect("/");
   });
 };

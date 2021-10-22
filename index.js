@@ -5,12 +5,15 @@ const expressSession = require('express-session')
 const MongoStore = require('connect-mongo')
 const flash = require('connect-flash')
 const methodOverride = require('method-override')
+const marked = require('marked')
+const createDomPurifier = require('dompurify')
+const { JSDOM } = require('jsdom')
+const dompurify = createDomPurifier(new JSDOM().window)
 
 const auth = require('./src/middleware/auth')
 const redirectIfAuthenticated = require('./src/middleware/redirectIfAuthenticated')
-const moment = require("moment")// parse dates and time
+//const moment = require("moment")// parse dates and time
 
-//const fileUpoad = require('express-fileupload')// optional, still thinking on it
 
 const createPostController = require('./src/controllers/createPost')
 const homePageController = require('./src/controllers/homePage')
@@ -22,6 +25,8 @@ const loginController = require("./src/controllers/login")
 const loginUserController = require('./src/controllers/loginUser')
 const logoutController = require('./src/controllers/logout')
 const deletePostController = require('./src/controllers/deletePost')
+const updatePostController = require('./src/controllers/updatePost')
+const createEditController = require('./src/controllers/createEdit')
 
 const dbSetup = require("./db")
 const port = process.env.PORT || 3000;
@@ -87,6 +92,8 @@ app.get("/auth/register",  createUserController)
 app.post("/users/register",  storeUserController)
 app.get("/auth/logout", logoutController)
 app.delete("/posts/:id", deletePostController)
+app.get("/edit/:id", createEditController)
+app.put("/edit/:id", updatePostController)
 
 
 
