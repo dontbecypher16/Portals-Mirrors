@@ -106,10 +106,6 @@ app.get("/contact", (req, res) => {
   res.render("contact");
 });
 
-app.get("/admin", (req, res) => {
-  res.render("admin");
-});
-
 
 
 
