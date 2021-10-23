@@ -76,15 +76,16 @@ app.use(expressSession({
       next()
       
     })
-
+app.use(auth)
 const morePost = require('./src/middleware/morePost')
 app.use('/posts/store', morePost)
+
     
     
     
 app.get("/", homePageController)
 app.get("/posts/:id", getPostController)
-app.get("/posts",  createPostController)
+app.get("/posts",   createPostController)
 app.post("/posts/store", storePostController)
 app.get('/auth/login', loginController)
 app.post('/users/login', loginUserController)

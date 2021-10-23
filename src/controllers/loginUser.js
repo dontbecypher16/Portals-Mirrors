@@ -7,7 +7,6 @@ module.exports = async (req, res) => {
         password
     } = req.body;
     // try to find the user
-    let isLoggedIn
     await User.findOne({
         email
     }, (error, user) => {
@@ -17,11 +16,9 @@ module.exports = async (req, res) => {
                 if (same) {
                     // store user session.
                     req.session.userId = user._id
-                    //isLoggedIn = true
                     res.redirect('/')
                     console.log({ Message: "Success"})
                 } else {
-                    //isLoggedIn = false
                     res.redirect('/auth/login')
                 }
             })

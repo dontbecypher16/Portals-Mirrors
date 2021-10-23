@@ -13,6 +13,7 @@
                         <p class="post-meta">Posted by <a href="#"> {{ this.username }} </a>
                             on {{ this.createdAt }}
                         </p>
+                        {{#if ../isLoggedIn}}
                         <form action="/posts/{{this._id}}?_method=DELETE" method="POST">
                             <button type="submit" class="btn btn-danger float-right">Delete Post</button>
                         </form>
@@ -20,6 +21,7 @@
                             <a href="/edit/{{this._id}}"><button class="btn btn-primary float-left" class="d-inline">Edit
                                     Post</button></a>
                         </div>
+                        {{/if}}
                     </ul>
                     {{/each}}
                 </div>
@@ -42,3 +44,7 @@
     </nav>
     </div>
 </body>
+
+<script>
+    console.log("is Logged in", {{isLoggedIn}})
+</script>

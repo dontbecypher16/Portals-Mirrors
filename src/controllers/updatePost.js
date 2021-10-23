@@ -1,30 +1,28 @@
+const { post } = require('jquery')
 const Post = require('../models/postsSchema')
 
 module.exports = async (req, res) => {
-       await Post.findByIdAndUpdate(req.params.id, (error, post) => {
-         if(error){
-            res.status(500);
-            res.redirect("/posts");
-         }else{
-             
-                 post.title = req.body.title
-                 post.description = req.body.description
-                 post.category = req.body.category
-                 post.content = req.body.content
-                 postusername = req.body.username
-                 post.createdAt = req.body.createdAt
-            
-             post.save((error, savedPost) => {
-                 if(error){
-                     res.status(500)
-                 }
-                
-                 res.redirect('/')
-             })
-         }
+    console.log(req.params.id)
 
-         res.redirect('singlepost')
+    try{
+        let doc = {}
+        doc.title = req.body.title
+        doc.description = req.body.description
+        doc.category = req.body.category
+        doc.content = req.body.content
+        doc.username = req.body.username
+        doc.createdAt = req.body.createdAt
 
-     }).lean()
+        await Post.findByIdAndUpdate(req.params.id, doc).lean()
+    
+        res.redirect(`/posts/${id}`)
+   
+
+    }catch(e){
+        console.error(e)
+        res.status(500)
+        res.redirect('/')
+    }
+    
 
 }
