@@ -7,8 +7,9 @@ const flash = require('connect-flash')
 const methodOverride = require('method-override')
 const marked = require('marked')
 const createDomPurifier = require('dompurify')
-const { JSDOM } = require('jsdom')
-const dompurify = createDomPurifier(new JSDOM().window)
+// const { JSDOM } = require('jsdom')
+// const dompurify = createDomPurifier(new JSDOM('').window)
+// const clean = DOMPurify.sanitize(dirty);
 
 const auth = require('./src/middleware/auth')
 const redirectIfAuthenticated = require('./src/middleware/redirectIfAuthenticated')
@@ -79,6 +80,7 @@ app.use(expressSession({
 app.use(auth)
 const morePost = require('./src/middleware/morePost')
 app.use('/posts/store', morePost)
+
 
     
     

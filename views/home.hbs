@@ -18,7 +18,8 @@
                             <button type="submit" class="btn btn-danger float-right">Delete Post</button>
                         </form>
                         <div class="form-group my-4 text-center">
-                            <a href="/edit/{{this._id}}"><button class="btn btn-primary float-left" class="d-inline">Edit
+                            <a href="/edit/{{this._id}}"><button class="btn btn-primary float-left"
+                                    class="d-inline">Edit
                                     Post</button></a>
                         </div>
                         {{/if}}
@@ -27,24 +28,8 @@
                 </div>
                 <hr>
 
-                <!-- Pager -->
-                <div class="clearfix">
-                    <a class="btn btn-primary float-right" href="#">Older Posts →</a>
-                </div>
             </div>
         </div>
     </div>
-
-    <hr>
-    <nav>
-        <ul class="pager">
-            <li><a href="#">Previous</a></li>
-            <li><a href="#">Next</a></li>
-        </ul>
-    </nav>
-    </div>
 </body>
 
-<script>
-    console.log("is Logged in", {{isLoggedIn}})
-</script>
