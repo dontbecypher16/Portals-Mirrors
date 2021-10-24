@@ -21,3 +21,10 @@
   color: rgba(0, 0, 0, 0.315);
   text-decoration: none;
 }
+
+/* TODO: try to do with bootstrap */
+.main-layout {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-row-gap: 10px;
+}

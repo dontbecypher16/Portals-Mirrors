@@ -1,35 +1,34 @@
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
-                <div class="post-preview">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-preview">
+                <ul class="people_list list-unstyled">
                     {{#each posts}}
-                    <ul class="people_list">
-                        <h2 class="post-title">
-                            <a href="posts/{{ this._id }}">
-                                <li>{{ this.title }}</li>
-                            </a>
-                        </h2>
-                        <p class="post-meta">Posted by <a href="#"> {{ this.username }} </a>
-                            on {{ this.createdAt }}
-                        </p>
-                        {{#if ../isLoggedIn}}
-                        <form action="/posts/{{this._id}}?_method=DELETE" method="POST">
-                            <button type="submit" class="btn btn-danger float-right">Delete Post</button>
-                        </form>
-                        <div class="form-group my-4 text-center">
-                            <a href="/edit/{{this._id}}"><button class="btn btn-primary float-left"
-                                    class="d-inline">Edit
-                                    Post</button></a>
-                        </div>
-                        {{/if}}
-                    </ul>
+                        <li>
+                            <h2 class="post-title">
+                                <a href="posts/{{ this._id }}">{{ this.title }}</a>
+                            </h2>
+                            <p class="post-meta">Posted by <a href="#"> {{ this.username }} </a>
+                                on {{ this.createdAt }}
+                            </p>
+                            {{#if ../isLoggedIn}}
+                                <form action="/posts/{{this._id}}?_method=DELETE" method="POST">
+                                    <button type="submit" class="btn btn-danger float-right">Delete Post</button>
+                                </form>
+                                <div class="form-group my-4 text-center">
+                                    <a href="/edit/{{this._id}}">
+                                        <button class="btn btn-primary float-left" class="d-inline">
+                                            Edit Post
+                                        </button>
+                                    </a>
+                                </div>
+                            {{/if}}
+                        </li>
                     {{/each}}
-                </div>
-                <hr>
-
+                </ul>
             </div>
+            <hr>
+
         </div>
     </div>
-</body>
-
+</div>

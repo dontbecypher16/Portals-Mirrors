@@ -11,7 +11,9 @@ const createDomPurifier = require('dompurify')
 // const dompurify = createDomPurifier(new JSDOM('').window)
 // const clean = DOMPurify.sanitize(dirty);
 
-const auth = require('./src/middleware/auth')
+const isLoggedIn = require('./src/middleware/isLoggedIn')
+const notLoggedInRedirect = require('./src/middleware/notLoggedInRedirect')
+const notLoggedInUnauthorized = require('./src/middleware/notLoggedInUnauthorized')
 const redirectIfAuthenticated = require('./src/middleware/redirectIfAuthenticated')
 //const moment = require("moment")// parse dates and time
 
@@ -77,26 +79,32 @@ app.use(expressSession({
       next()
       
     })
-app.use(auth)
+app.use(isLoggedIn)
 const morePost = require('./src/middleware/morePost')
 app.use('/posts/store', morePost)
 
 
     
     
-    
+// user views
 app.get("/", homePageController)
 app.get("/posts/:id", getPostController)
-app.get("/posts",   createPostController)
-app.post("/posts/store", storePostController)
 app.get('/auth/login', loginController)
-app.post('/users/login', loginUserController)
-app.get("/auth/register",  createUserController)
+app.get("/auth/logout",  logoutController)
+app.get("/auth/register", createUserController)
+
+// user actions
 app.post("/users/register",  storeUserController)
-app.get("/auth/logout", logoutController)
-app.delete("/posts/:id", deletePostController)
-app.get("/edit/:id", createEditController)
-app.put("/edit/:id", updatePostController)
+app.post('/users/login', loginUserController)
+
+// admin views
+app.get("/posts", notLoggedInRedirect, createPostController)
+app.get("/edit/:id", notLoggedInRedirect, createEditController)
+
+// admin actions
+app.post("/posts/store", notLoggedInUnauthorized, storePostController)
+app.delete("/posts/:id", notLoggedInUnauthorized, deletePostController)
+app.put("/edit/:id", notLoggedInUnauthorized, updatePostController)
 
 
 

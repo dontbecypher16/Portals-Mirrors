@@ -2,8 +2,6 @@ const { post } = require('jquery')
 const Post = require('../models/postsSchema')
 
 module.exports = async (req, res) => {
-    console.log(req.params.id)
-
     try{
         let doc = {}
         doc.title = req.body.title
@@ -15,9 +13,7 @@ module.exports = async (req, res) => {
 
         await Post.findByIdAndUpdate(req.params.id, doc).lean()
     
-        res.redirect(`/posts/${id}`)
-   
-
+        res.redirect(`/posts/${req.params.id}`)
     }catch(e){
         console.error(e)
         res.status(500)
