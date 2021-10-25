@@ -124,7 +124,7 @@ dbSetup();
 
 // middleware
 
-app.use((req, res) => {
+app.all("*", (req, res) => {
   res.type("text/plain")
   res.status(404)
   res.send("404 - Page Not Found")
@@ -132,7 +132,6 @@ app.use((req, res) => {
 
 app.use((err, req, res, next) => {
   console.error(err.message)
-  res.type("text/plain")
   res.status(500)
   res.send("500 - Server Error")
 })
