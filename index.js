@@ -131,9 +131,12 @@ app.all("*", (req, res) => {
 })
 
 app.use((err, req, res, next) => {
-  console.error(err.message)
-  res.status(500)
-  res.send("500 - Server Error")
+  if(err){
+    console.error(err.message)
+   return res.status(500).send("500 - Server Error")
+    
+
+  }
 })
 
 app.listen(port, () =>
