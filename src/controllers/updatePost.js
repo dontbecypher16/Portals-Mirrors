@@ -16,7 +16,6 @@ module.exports = async (req, res) => {
         res.redirect(`/posts/${req.params.id}`)
     }catch(e){
         console.error(e)
-        res.status(500)
         res.redirect('/')
     }
     

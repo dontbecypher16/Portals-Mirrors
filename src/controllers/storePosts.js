@@ -8,7 +8,6 @@ module.exports = async (req, res) => {
     await Post.create(req.body)
     res.redirect("/");
   } catch (e) {
-    res.status(500);
     res.redirect("/posts");
   }
 };
