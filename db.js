@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const connectionString = 'mongodb://localhost:27017/portals-mirrors'
 const uri = process.env.MONGODB_URI;
 
 module.exports = function() {
@@ -7,13 +6,7 @@ module.exports = function() {
  {useNewUrlParser: true,
  useUnifiedTopology: true }, (err) => {
     if(err)  {
-        mongoose.connect(connectionString, (err) => {
-          if(err){
-            console.log(err);
-           }else {
-            console.log('mongoose connection is successful on: ' + db);
-           }
-        })
+        console.log(err.message)
     } else {
         console.log('database connection successful')
 
