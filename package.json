@@ -1,12 +1,12 @@
 {
   "name": "portals-mirrors",
   "version": "1.0.0",
-  "description": "",
+  "description": "A blog on VR and web development",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Richard Dixon",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -24,5 +24,8 @@
     "method-override": "^3.0.0",
     "mongodb": "^4.1.2",
     "mongoose": "^6.0.6"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }

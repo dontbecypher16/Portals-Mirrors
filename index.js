@@ -1,5 +1,10 @@
 const express = require("express")
 const app = express()
+let port = process.env.PORT
+if (port == null || port == "") {
+  port = 8000;
+}
+const uri = process.env.MONGODB_URI;
 const expressHandlebars = require("express-handlebars")
 const expressSession = require('express-session')
 const MongoStore = require('connect-mongo')
@@ -31,7 +36,7 @@ const updatePostController = require('./src/controllers/updatePost')
 const createEditController = require('./src/controllers/createEdit')
 
 const dbSetup = require("./db")
-const port = process.env.PORT || 3000;
+
 
 app.use(express.static(__dirname + "/public"))
 app.use(express.json());
@@ -47,7 +52,7 @@ app.use(expressSession({
   }))
 
   
-  
+
   
   
   app.engine(
