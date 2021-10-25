@@ -11,6 +11,5 @@ Thinking about creating where visitors can login and make comments on any of the
 
 * Home page
 * About page
-* Contact page
 * Login page
 * Create Post
