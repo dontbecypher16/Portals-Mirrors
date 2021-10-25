@@ -1,3 +1,4 @@
+const { post } = require("jquery");
 const Post = require("../models/postsSchema");
 
 //app.get("/posts/:id", 
@@ -7,5 +8,6 @@ module.exports = async (req, res) => {
     res.render("singlepost", {
       posts,
     });
+   
   }
   

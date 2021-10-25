@@ -1,4 +1,8 @@
 const mongoose = require('mongoose')
+const marked = require("marked")
+const createDomPurify = require('dompurify')
+const { JSDOM } = require('jsdom')
+const dompurify = createDomPurify(new JSDOM().window)
 
 const postSchema = new mongoose.Schema({
   
@@ -21,16 +25,21 @@ const postSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date()
+    },
+    sanitizedHtml: {
+        type: String
+
     }
+    
 })
 
-// postSchema.pre('validate', function(next){
-//     if(this.content){
-//         this.sanitizedHTML = DOMPurify.sanitize(marked(this.content))
-//     }
+postSchema.pre('validate', function(next){
+    if(this.content){
+        this.sanitizedHtml = dompurify.sanitize(marked(this.content))
+    }
 
-//     next()
-// })
+    next()
+})
 
 const Post = mongoose.model('Post', postSchema)
 module.exports = Post

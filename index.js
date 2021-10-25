@@ -5,17 +5,16 @@ const expressSession = require('express-session')
 const MongoStore = require('connect-mongo')
 const flash = require('connect-flash')
 const methodOverride = require('method-override')
-const marked = require('marked')
-const createDomPurifier = require('dompurify')
-// const { JSDOM } = require('jsdom')
-// const dompurify = createDomPurifier(new JSDOM('').window)
-// const clean = DOMPurify.sanitize(dirty);
+const marked = require("marked")
+const createDomPurify = require('dompurify')
+const { JSDOM } = require('jsdom')
+const dompurify = createDomPurify(new JSDOM().window)
 
 const isLoggedIn = require('./src/middleware/isLoggedIn')
 const notLoggedInRedirect = require('./src/middleware/notLoggedInRedirect')
 const notLoggedInUnauthorized = require('./src/middleware/notLoggedInUnauthorized')
-const redirectIfAuthenticated = require('./src/middleware/redirectIfAuthenticated')
-//const moment = require("moment")// parse dates and time
+
+
 
 
 const createPostController = require('./src/controllers/createPost')
@@ -111,11 +110,6 @@ app.put("/edit/:id", notLoggedInUnauthorized, updatePostController)
 app.get("/about", (req, res) => {
   res.render("about");
 });
-
-app.get("/contact", (req, res) => {
-  res.render("contact");
-});
-
 
 
 
