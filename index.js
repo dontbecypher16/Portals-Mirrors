@@ -1,5 +1,7 @@
 const express = require("express")
 const app = express()
+const dotenv = require('dotenv')
+dotenv.config()
 let port = process.env.PORT
 if (port == null || port == "") {
   port = 8000;
