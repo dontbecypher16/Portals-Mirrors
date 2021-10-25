@@ -4,7 +4,6 @@ let port = process.env.PORT
 if (port == null || port == "") {
   port = 8000;
 }
-const uri = process.env.MONGODB_URI;
 const expressHandlebars = require("express-handlebars")
 const expressSession = require('express-session')
 const MongoStore = require('connect-mongo')

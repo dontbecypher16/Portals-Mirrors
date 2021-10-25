@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
-const connectionString = 'mongodb://localhost:27017/portals-mirrors'
-
+//const connectionString = //'mongodb://localhost:27017/portals-mirrors'
+const uri = process.env.MONGODB_URI;
 
 module.exports = function() {
-   mongoose.connect(connectionString,
+   mongoose.connect(uri,
  {useNewUrlParser: true,
  useUnifiedTopology: true }, (err) => {
     if(err)  {
