@@ -130,14 +130,14 @@ app.all("*", (req, res) => {
   res.send("404 - Page Not Found")
 })
 
-app.use((err, req, res, next) => {
-  if(err){
-    console.error(err.message)
-   return res.status(500).send("500 - Server Error")
+// app.use((err, req, res, next) => {
+//   if(err){
+//     console.error(err.message)
+//    return res.status(500).send("500 - Server Error")
     
 
-  }
-})
+//   }
+// })
 
 app.listen(port, () =>
   console.log(
