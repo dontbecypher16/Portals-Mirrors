@@ -16,7 +16,6 @@ module.exports = async (req, res) => {
                 if (same) {
                     // store user session.
                     req.session.userId = user._id
-                    console.log({session: req.session})
                     res.redirect('/')
                     console.log({ Message: "Success"})
                 } else {
