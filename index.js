@@ -45,7 +45,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 app.use(methodOverride('_method'))
 app.use(expressSession({
-  secret: 'secret',
+  secret: process.env.SESSION_SECRET,
   store: MongoStore.create({ 
     mongoUrl: process.env.MONGODB_URI }),
     resave: true,
