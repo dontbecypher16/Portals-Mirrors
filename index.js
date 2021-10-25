@@ -47,7 +47,7 @@ app.use(methodOverride('_method'))
 app.use(expressSession({
   secret: 'secret',
   store: MongoStore.create({ 
-    mongoUrl: 'mongodb://localhost:27017/portals-mirrors' }),
+    mongoUrl: process.env.MONGODB_URI }),
     resave: true,
     saveUninitialized: true
 
