@@ -7,6 +7,10 @@
     box-shadow: inset 0 -2px 5px rgba(0,0,0,.1); */
 }
 
+.navbar-light .navbar-nav .nav-link{
+  color: #2D446B;
+}
+
 .navbar-nav{
   color: snow;
 }
@@ -18,7 +22,7 @@
 
 .nav-link {
   margin-right: 30px;
-  font-size: large;
+  font-size: 1.25rem;
 }
 .nav-link:hover {
   color: rgba(56, 22, 207, 0.336);
