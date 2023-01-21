@@ -22,8 +22,6 @@ const notLoggedInRedirect = require('./src/middleware/notLoggedInRedirect')
 const notLoggedInUnauthorized = require('./src/middleware/notLoggedInUnauthorized')
 
 
-
-
 const createPostController = require('./src/controllers/createPost')
 const homePageController = require('./src/controllers/homePage')
 const storePostController = require('./src/controllers/storePosts')
@@ -52,6 +50,7 @@ app.use(expressSession({
     saveUninitialized: true
 
   }))
+
 
   
 

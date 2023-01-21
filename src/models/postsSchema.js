@@ -33,13 +33,17 @@ const postSchema = new mongoose.Schema({
     
 })
 
+
 postSchema.pre('validate', function(next){
+
+
     if(this.content){
         this.sanitizedHtml = dompurify.sanitize(marked(this.content))
     }
 
     next()
 })
+
 
 const Post = mongoose.model('Post', postSchema)
 module.exports = Post

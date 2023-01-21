@@ -6,7 +6,7 @@ const Post = require("../models/postsSchema");
 module.exports = async (req, res) => {
     const posts = await Post.findById(req.params.id).lean();
     res.render("singlepost", {
-      posts,
+      posts
     });
    
   }

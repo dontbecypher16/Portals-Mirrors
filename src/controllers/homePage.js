@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
   try {
     const posts = await Post.find({}).lean();
     return res.render("home", {
-      posts,
+      posts
     });
   } catch (e) {
     return res.send(e.message);

@@ -12,7 +12,6 @@ module.exports = async (req, res) => {
         doc.createdAt = req.body.createdAt
 
         await Post.findByIdAndUpdate(req.params.id, doc).lean()
-    
         res.redirect(`/posts/${req.params.id}`)
     }catch(e){
         console.error(e)

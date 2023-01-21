@@ -5,3 +5,7 @@ npm-debug.log
 
 placeholder.js
 views\partials\weather.hbs
+
+
+Dockerfile.render
+render.yaml
