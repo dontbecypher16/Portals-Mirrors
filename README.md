@@ -1,6 +1,6 @@
 # Portals/Mirrors
 
-https://gentle-escarpment-27252.herokuapp.com/
+https://gentle-escarpment-27252.onrender.com
 
 This is the project outline for my blog. The topics that will be examined on the blog are virtual reality, web development,
 and thoughts on the future and transhumanism. My work will be categorized between essays and poems.
